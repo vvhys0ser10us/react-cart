@@ -49,6 +49,14 @@ const reducer = (state, action) => {
     return { ...state, total, amount }
   }
 
-  return state
+  if (action.type === 'LOADING') {
+    return { ...state, loading: true }
+  }
+
+  if (action.type === 'DISPLAY_ITEMS') {
+    return { ...state, cart: action.payload, loading: false }
+  }
+
+  throw new Error('no matching type')
 }
 export default reducer
